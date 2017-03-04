@@ -12,36 +12,29 @@ command :create do |c|
 		c.syntax = 'core-cli create'
 		c.description = 'create a core application'
 		c.action do
-      welcome
-      @node_name = ask('Node name: ')
-      clone_repository
+
+      puts '-----------------------------------------------'
+      puts '----- Radiant9 Node Generation Interface ------'
+      speak 'Welcome Commander'
+      puts '-----------------------------------------------'
+
+      node_name = ask('Node name: ')
+      new_repository = ask('New repository address: ')
+
+      # cloning repository
+      system("git clone --bare https://github.com/radiant9/shell.git #{node_name}")
+      Dir.chdir node_name
+      system("git push --mirror #{new_repository}")
+      Dir.chdir '..'
+      system("rm -rf #{node_name}")
+      system("git clone #{new_repository} #{node_name}")
 		end
 end
 
 command :setup do |c|
-  c.syntax 'core-cli setup'
-  c.syntax 'sets up new application'
+  c.syntax = 'core-cli setup'
+  c.description = 'sets up new application'
   c.action do
-    welcome
-
+    puts 'setting up the node'
   end
-end
-
-# puts a welcome message
-def welcome
-  puts '----------------------------------------------'
-  puts '------ Radiant9 Command Line Interface -------'
-  speak 'Welcome Commander'
-  puts '----------------------------------------------'
-end
-
-# clone repository
-def clone_repository
-  new_repository = ask('New repository address: ')
-  system("git clone --bare https://github.com/radiant9/shell.git #{@node_name}")
-  Dir.chdir node_name
-  system("git push --mirror #{new_repository}")
-  Dir.chdir '..'
-  system("rm -rf #{node_name}")
-  system("git clone #{new_repository} #{@node_name}")
 end
