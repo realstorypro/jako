@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require "bundler/setup"
+require 'commander/import'
+
+program :name, "Core-cli"
+program :version, '0.1.0'
+program :description, 'Command line interface for the core framework'
+
+command :extract do |c|
+		c.syntax = 'ruby-cli extract foo -bar=123'
+		c.description = 'Extract foo and bar'
+		c.option '--bar STRING', String, 'Option bar with a string'
+		c.action do |args, options|
+				options.default :bar => 'BAR'
+				puts 'Extracting..'
+				puts "Args: #{args}"
+				puts "Option Bar: #{options.bar}"
+		end
+end
