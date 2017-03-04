@@ -8,14 +8,20 @@ program :name, "Core-cli"
 program :version, '0.1.0'
 program :description, 'Command line interface for the core framework'
 
-command :extract do |c|
-		c.syntax = 'ruby-cli extract foo -bar=123'
-		c.description = 'Extract foo and bar'
-		c.option '--bar STRING', String, 'Option bar with a string'
-		c.action do |args, options|
-				options.default :bar => 'BAR'
-				puts 'Extracting..'
-				puts "Args: #{args}"
-				puts "Option Bar: #{options.bar}"
+command :create do |c|
+		c.syntax = 'core-cli create'
+		c.description = 'create a core application'
+		c.action do
+      welcome
+      node_name = ask('Node Name: ')
+      puts exec("git clone --bare https://github.com/radiant9/shell.git #{node_name}")
+      
 		end
+end
+
+def welcome
+  puts '----------------------------------------------'
+  puts '------ Radiant9 Command Line Interface -------'
+  speak 'Welcome Commander'
+  puts '----------------------------------------------'
 end
