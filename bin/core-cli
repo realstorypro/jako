@@ -9,32 +9,48 @@ program :version, '0.1.0'
 program :description, 'Command line interface for the core framework'
 
 command :create do |c|
-		c.syntax = 'core-cli create'
-		c.description = 'create a core application'
-		c.action do
+  c.syntax = 'core-cli create'
+  c.description = 'create a core application'
+  c.action do
 
-      puts '-----------------------------------------------'
-      puts '----- Radiant9 Node Generation Interface ------'
-      speak 'Welcome Commander'
-      puts '-----------------------------------------------'
+    welcome_message
+    speak 'Core Creation Initiated'
 
-      node_name = ask('Node name: ')
-      new_repository = ask('New repository address: ')
+    node_name = ask('Node name: ')
+    new_repository = ask('New repository address: ')
 
-      # cloning repository
-      system("git clone --bare https://github.com/radiant9/shell.git #{node_name}")
-      Dir.chdir node_name
-      system("git push --mirror #{new_repository}")
-      Dir.chdir '..'
-      system("rm -rf #{node_name}")
-      system("git clone #{new_repository} #{node_name}")
-		end
+    # cloning repository
+    system("git clone --bare https://github.com/radiant9/shell.git #{node_name}")
+    Dir.chdir node_name
+    system("git push --mirror #{new_repository}")
+    Dir.chdir '..'
+    system("rm -rf #{node_name}")
+    system("git clone #{new_repository} #{node_name}")
+  end
 end
 
 command :setup do |c|
   c.syntax = 'core-cli setup'
-  c.description = 'sets up new application'
+  c.description = 'setup a core'
   c.action do
-    puts 'setting up the node'
+
+    welcome_message
+    speak 'Core Setup Initiated'
+
+    system('bundle')
+    system('rake core:install:gemfile')
+    system('rake core:install:requirejs')
+    system('rake core:install:uploadcare')
+    system('rake core:install:migrations')
+    system('bundle')
+    system('rake db:create')
+    system('rake db:migrate')
+
   end
+end
+
+def welcome_message
+  puts '-----------------------------------------------'
+  puts '------- Radiant9 Command Line Interface -------'
+  puts '-----------------------------------------------'
 end
