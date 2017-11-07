@@ -1,0 +1,13 @@
+env:
+  uploadcare: ''
+  segment: ''
+
+github:
+  implementation:
+  submodule:
+
+heroku:
+  app:
+  add_ons:
+
+genesis_boot_files: 'community radiant9'

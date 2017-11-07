@@ -1,56 +1,59 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require "bundler/setup"
+require 'bundler/setup'
 require 'commander/import'
 
-program :name, "Core-cli"
+program :name, 'Core-cli'
 program :version, '0.1.0'
-program :description, 'Command line interface for the core framework'
+program :description, 'Narcissistic command line interface for Genesis'
 
-command :create do |c|
-  c.syntax = 'core-cli create'
-  c.description = 'create a core application'
+command :new do |c|
+  c.syntax = 'core new'
+  c.description = 'new genesis implementation'
   c.action do
 
     welcome_message
-    speak 'Core Creation Initiated'
+    speak 'What do you want?'
 
-    node_name = ask('Node name: ')
-    new_repository = ask('New repository address: ')
+    choose do |menu|
+      menu.prompt = 'What do you want?'
+      menu.choice('Setup new implementation') do
+        say 'fine ...'
+        speak 'fine, new it is'
+      end
+      menu.choice('Upgrade existing implementation') do
+        say 'fine ...'
+        speak 'fine, new it is'
+      end
+    end
 
-    # cloning repository
-    system("git clone --bare https://github.com/radiant9/shell.git #{node_name}")
-    Dir.chdir node_name
-    system("git push --mirror #{new_repository}")
-    Dir.chdir '..'
-    system("rm -rf #{node_name}")
-    system("git clone #{new_repository} #{node_name}")
+    #node_name = ask('Node name: ')
+    #new_repository = ask('New repository address: ')
   end
 end
 
 command :setup do |c|
   c.syntax = 'core-cli setup'
-  c.description = 'setup a core'
+  c.description = 'setup for new genesis implementation'
   c.action do
 
-    welcome_message
-    speak 'Core Setup Initiated'
+    speak 'Genesis Setup Initiated'
 
-    system('bundle')
-    system('rake core:install:gemfile')
-    system('rake core:install:requirejs')
-    system('rake core:install:uploadcare')
-    system('rake core:install:migrations')
-    system('bundle')
-    system('rake db:create')
-    system('rake db:migrate')
+    # system('bundle')
+    # system('rake core:install:gemfile')
+    # system('rake core:install:requirejs')
+    # system('rake core:install:uploadcare')
+    # system('rake core:install:migrations')
+    # system('bundle')
+    # system('rake db:create')
+    # system('rake db:migrate')
 
   end
 end
 
 def welcome_message
-  puts '-----------------------------------------------'
-  puts '------- Radiant9 Command Line Interface -------'
-  puts '-----------------------------------------------'
+  puts '----------------------------------------------------------'
+  puts '------- CORE - Narcissistic Command Line Interface -------'
+  puts '----------------------------------------------------------'
 end
