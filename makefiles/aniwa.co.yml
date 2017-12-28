@@ -1,0 +1,33 @@
+implementations:
+  - global
+  - www_aniwa_co
+
+shinobi:
+  design: false
+  debug: false
+
+github:
+  deploys:
+  iplementation:
+
+heorku:
+  app: 'aniwa_co'
+  addons:
+    - sendgrid:starter
+    - scheduler:standard
+    - papertrail:choklad
+    - heroku-redis:hobby-dev
+    - heroku-postgresql:hobby-dev
+
+env:
+  aws_access_key_id:
+  aws_region:
+  aws_s3_bucket:
+  aws_secret_access_key:
+  cloudfront:
+  uploadcare_private_key:
+  uploadcare_public_key:
+  segment_js_write_key:
+  segment_write_key:
+  from_email: # This should probably be in the DB
+  url: # This should probably be in the DB

@@ -10,4 +10,5 @@ heroku:
   app:
   add_ons:
 
-genesis_boot_files: 'community radiant9'
+# as space separated string
+global_boot_files: 'community'
