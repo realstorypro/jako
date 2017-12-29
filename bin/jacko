@@ -4,8 +4,8 @@ require 'rubygems'
 require 'bundler/setup'
 require 'commander/import'
 
-program :name, 'Jacko-cli'
-program :version, '0.1.0'
+program :name, 'Jacko'
+program :version, '0.5.0'
 program :description, 'Factory worker with attitude'
 
 default_command :prompt
@@ -20,6 +20,9 @@ command :prompt do |c|
       menu.prompt = 'How can I help you?'
       menu.choice('Add new instance') do
         new_instance
+      end
+      menu.choice('Build an instance') do
+        build_instance
       end
       menu.choice('Suspend existing instance') do
       end
@@ -38,7 +41,8 @@ def new_instance
   template_path = root + '/clients/template'
   folders = Dir.entries(blueprints_path)
 
-  # we're removing the non blueprint items from the folder array
+  # we're removing th
+  # e non blueprint items from the folder array
   folders = folders - ['.','..','_common']
 
   divider
