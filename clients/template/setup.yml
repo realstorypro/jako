@@ -1,0 +1,2 @@
+github: '$github_repo'
+heorku_app: '$heroku_app'

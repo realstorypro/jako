@@ -18,12 +18,14 @@ command :prompt do |c|
     welcome_message
     choose do |menu|
       menu.prompt = 'How can I help you?'
-      menu.choice('New Build') do
-        new_build
+      menu.choice('Add new instance') do
+        new_instance
       end
-      menu.choice('Rebuild Implementation') do
+      menu.choice('Suspend existing instance') do
       end
-      menu.choice('New Release') do
+      menu.choice('Release instance update') do
+      end
+      menu.choice('Release global update') do
       end
     end
 
@@ -31,12 +33,34 @@ command :prompt do |c|
 end
 
 # responsible for build
-def new_build
+def new_instance
+  blueprints_path = root + '/clients/blueprints'
+  template_path = root + '/clients/template'
+  folders = Dir.entries(blueprints_path)
+
+  # we're removing the non blueprint items from the folder array
+  folders = folders - ['.','..','_common']
+
   divider
-  Dir.entries(root + '/templates').each do |entry|
-    next if entry == '.' || entry == '..'
-    say entry.gsub('_','.')
+  url = ask('What is the site url?')
+  divider
+
+  # removing the www. and replacing dots with underscores
+  folder_name = url.gsub('www.','').gsub('.','_')
+
+  # check if the folder exists
+  existing_folder = folders.select {|folder| folder == folder_name}
+
+  unless existing_folder.empty?
+    divider
+    say 'Aborting Operation'
+    say "folder: #{folder_name} already exists clients/blueprints"
+    return
   end
+
+  say "adding blueprint to: #{folder_name} under clients/blueprints"
+  FileUtils.copy_entry template_path, "#{blueprints_path}/#{folder_name}"
+
 end
 
 
@@ -49,10 +73,15 @@ end
 
 def welcome_message
   divider
-  puts '---------- JACKO - Factory Worker with Attitude ----------'
+  puts '----------- JAKO - Factory Worker with Attitude ----------'
   divider
 end
 
 def divider
   puts '----------------------------------------------------------'
 end
+
+def root
+  File.expand_path('../..',__FILE__)
+end
+
