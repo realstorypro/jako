@@ -1,0 +1,7 @@
+heorku:
+  addons:
+    - sendgrid:starter
+    - scheduler:standard
+    - papertrail:choklad
+    - heroku-redis:hobby-dev
+    - heroku-postgresql:hobby-dev

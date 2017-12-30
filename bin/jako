@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler/setup'
+require 'commander/import'
+require './lib/node'
+require './lib/helpers/utils'
+
+@utils = Utils.instance
+
+program :name, 'Jako'
+program :version, '0.5.0'
+program :description, 'Factory worker with attitude'
+
+default_command :prompt
+
+command :prompt do |c|
+  c.syntax = 'jako'
+  c.description = 'jako default prompt'
+  c.action do
+    welcome_message
+    choose do |menu|
+      menu.prompt = 'How can I help you?'
+      @utils.divider
+      menu.choice('Add new node') do
+        @utils.divider
+        Node.instance.new()
+      end
+      menu.choice('Build a node') do
+        @utils.divider
+        Node.instance.build()
+      end
+    end
+  end
+end
+
+private
+
+def welcome_message
+  @utils.divider
+  puts '----------- JAKO - Factory Worker with Attitude ----------'
+  @utils.divider
+end

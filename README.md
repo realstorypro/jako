@@ -7,7 +7,7 @@ Business autmoator with attitude. DevOS Approved. Rubymade.
 
 
 ### Source
-- \# jacko:include
+- \# jako:include
 
 ### Makefiles
 
