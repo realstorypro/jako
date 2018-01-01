@@ -10,22 +10,23 @@ class Node
   def initialize
     @utils = Utils.instance
     @blueprints_path = @utils.root + '/nodes/blueprints'
+    @schematics_path = @utils.root + '/nodes/schematics'
     @template_path = @utils.root + '/nodes/template'
     @source_path = @utils.root + '/source/gravity'
     @build_path = @utils.root + '/builds'
 
-    @folders = Dir.entries(@blueprints_path)
-    @folders -= %w(. ..)
+    @blueprints = Dir.entries(@blueprints_path)
+    @blueprints -= %w(. ..)
   end
 
   def new
-    url = ask('What is the site url?')
+    url = ask('What is the url?')
     @utils.divider
 
     blueprint_folder = folder_name(url)
 
     # check if the folder exists
-    existing_folder = @folders.select {|folder| folder == blueprint_folder}
+    existing_folder = @blueprints.select {|folder| folder == blueprint_folder}
 
     unless existing_folder.empty?
       @utils.divider
@@ -40,8 +41,9 @@ class Node
   def build
     choose do |menu|
       menu.prompt = 'Which node?'
-      @folders.each do |folder|
+      @blueprints.each do |folder|
         menu.choice(folder.tr('_','.')) do
+          @utils.divider
           say "Building #{folder} ..."
           load_setup folder
           # copy_source_to folder
@@ -64,8 +66,15 @@ class Node
   end
 
   def load_setup(folder)
+    # Load Blueprint & Schematic
     Config.load_and_set_settings"#{@blueprints_path}/#{folder}/setup.yml"
-    say "Current Schematic: #{Settings.schematic}"
+    say "#{@schematics_path}/#{Settings.schematic}.yml"
+    Settings.add_source! "#{@schematics_path}/#{Settings.schematic}.yml"
+    Settings.reload!
+
+    say "- schematic: #{Settings.schematic}"
+    say "- source: #{Settings.source}"
+
 
     # config = YAML.load_file('config/config.yml')
     # puts config['user_data']
