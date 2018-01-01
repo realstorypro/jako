@@ -9,8 +9,8 @@ class Node
 
   def initialize
     @utils = Utils.instance
-    @blueprints_path = @utils.root + '/clients/blueprints'
-    @template_path = @utils.root + '/clients/template'
+    @blueprints_path = @utils.root + '/nodes/blueprints'
+    @template_path = @utils.root + '/nodes/template'
     @source_path = @utils.root + '/source/gravity'
     @build_path = @utils.root + '/builds'
 
@@ -30,7 +30,7 @@ class Node
     unless existing_folder.empty?
       @utils.divider
       say 'Aborting Operation'
-      say "folder: #{blueprint_folder} already exists under 'clients/blueprints'"
+      say "folder: #{blueprint_folder} already exists under 'nodes/blueprints'"
       return
     end
 
@@ -59,7 +59,7 @@ class Node
   end
 
   def copy_blueprint(blueprint_folder)
-    say "adding blueprint to: #{blueprint_folder} under clients/blueprints"
+    say "adding blueprint to: #{blueprint_folder} under nodes/blueprints"
     FileUtils.copy_entry @template_path, "#{@blueprints_path}/#{blueprint_folder}"
   end
 
