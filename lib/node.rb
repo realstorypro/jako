@@ -46,15 +46,15 @@ class Node
           @utils.divider
           say "Building #{folder} ..."
           load_setup folder
-          # copy_source_to folder
-
+          copy_source_to folder
+          rename_source_files folder
         end
       end
     end
   end
 
-
   private
+
   def folder_name(url)
     # removing the www. and replacing dots with underscores
     url.gsub('www.', '').tr('.', '_')
@@ -68,22 +68,19 @@ class Node
   def load_setup(folder)
     # Load Blueprint & Schematic
     Config.load_and_set_settings"#{@blueprints_path}/#{folder}/setup.yml"
-    say "#{@schematics_path}/#{Settings.schematic}.yml"
     Settings.add_source! "#{@schematics_path}/#{Settings.schematic}.yml"
     Settings.reload!
 
     say "- schematic: #{Settings.schematic}"
     say "- source: #{Settings.source}"
-
-
-    # config = YAML.load_file('config/config.yml')
-    # puts config['user_data']
   end
 
   def copy_source_to(folder)
     FileUtils.copy_entry @source_path, "#{@build_path}/#{folder}"
-    # code here
   end
 
+  def rename_source_files(folder)
+    # code here
+  end
 
 end
