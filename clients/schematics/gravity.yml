@@ -1,3 +1,4 @@
+source: gravity
 heorku:
   addons:
     - sendgrid:starter

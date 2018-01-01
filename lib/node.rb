@@ -1,6 +1,7 @@
 require 'singleton'
 require './lib/helpers/utils'
 require 'yaml'
+require 'config'
 
 
 class Node
@@ -43,7 +44,7 @@ class Node
         menu.choice(folder.tr('_','.')) do
           say "Building #{folder} ..."
           load_setup folder
-          copy_source_to folder
+          # copy_source_to folder
 
         end
       end
@@ -62,9 +63,12 @@ class Node
     FileUtils.copy_entry @template_path, "#{@blueprints_path}/#{blueprint_folder}"
   end
 
-  def load_setup
-    config = YAML.load_file('config/config.yml')
-    puts config['user_data']
+  def load_setup(folder)
+    Config.load_and_set_settings"#{@blueprints_path}/#{folder}/setup.yml"
+    say "Current Schematic: #{Settings.schematic}"
+
+    # config = YAML.load_file('config/config.yml')
+    # puts config['user_data']
   end
 
   def copy_source_to(folder)
