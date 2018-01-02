@@ -8,4 +8,5 @@ Gem::Specification.new do |s|
   s.executables << 'jako'
 
   s.add_dependency 'commander'
+  s.add_dependency 'config'
 end
