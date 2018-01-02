@@ -1,3 +1,7 @@
 schematic: gravity
-github: https://github.com/leouofa/itsleonid_com.git
-heorku_app: itsleonid-com
+
+name: 'itsleonid'
+url: 'www.itsleonid.com'
+
+heorku:
+  app: itsleonid-com

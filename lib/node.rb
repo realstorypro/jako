@@ -80,7 +80,12 @@ class Node
   end
 
   def rename_source_files(folder)
-    # code here
+    Dir.chdir("#{@build_path}/#{folder}") do
+      # rename the url
+      system "grep -rli '#{Settings.replace.url}' * | xargs -I@ sed -i '' 's/#{Settings.replace.url}/#{Settings.url}/g' @"
+      system "grep -rli '#{Settings.replace.name}' * | xargs -I@ sed -i '' 's/#{Settings.replace.name}/#{Settings.name}/g' @"
+      system "grep -rli '#{Settings.replace.name.capitalize}' * | xargs -I@ sed -i '' 's/#{Settings.replace.name.capitalize}/#{Settings.name.capitalize}/g' @"
+    end
   end
 
 end

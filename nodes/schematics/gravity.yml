@@ -1,5 +1,10 @@
+# source folder we're using
 source: gravity
-replace: radiant9
+
+replace:
+  url: www.radiant9.com
+  name: radiant9
+
 heorku:
   addons:
     - sendgrid:starter
