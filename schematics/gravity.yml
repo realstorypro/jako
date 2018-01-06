@@ -1,9 +1,7 @@
-# source folder we're using
-source: gravity
-
-replace:
-  url: www.radiant9.com
-  name: radiant9
+source:
+  folder: gravity
+  url: www.rungravity.com
+  name: gravity
 
 heorku:
   addons:
