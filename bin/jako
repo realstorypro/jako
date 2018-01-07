@@ -30,6 +30,10 @@ command :prompt do |c|
         @utils.divider
         Node.instance.build()
       end
+      menu.choice('Bootstrap node') do
+        @utils.divider
+        Node.instance.bootstrap()
+      end
     end
   end
 end

@@ -3,5 +3,5 @@ schematic: gravity
 name: $name
 url: $url
 
-heorku:
+heroku:
   app: $heroku_app

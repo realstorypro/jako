@@ -55,7 +55,23 @@ class Node
           load_config folder
           remove_build folder
           copy_source_to folder
+          cleanup_build folder
           rename_source_files folder
+        end
+      end
+    end
+  end
+
+  def bootstrap
+    choose do |menu|
+      menu.prompt = 'Which node?'
+      @blueprints.each do |folder|
+        menu.choice(folder.tr('_', '.')) do
+          @utils.divider
+          say "Bootstrapping #{folder} ..."
+          load_config folder
+          validate_heroku_app
+          create_heroku_app folder
         end
       end
     end
@@ -104,12 +120,39 @@ class Node
     FileUtils.copy_entry "#{@source_path}/#{Settings.source.folder}", "#{@build_path}/#{folder}"
   end
 
-  def rename_source_files(folder)
+  def cleanup_build (folder)
     Dir.chdir("#{@build_path}/#{folder}") do
-      system 
-      system "grep -rli --exclude-dir=frontend --exclude=config/initializers/gravity.rb '#{Settings.source.url}' * | xargs -I@ sed -i '' 's/#{Settings.source.url}/#{Settings.url}/g' @"
-      system "grep -rli --exclude-dir=frontend '#{Settings.source.name}' * | xargs -I@ sed -i '' 's/#{Settings.source.name}/#{Settings.name}/g' @"
-      system "grep -rli --exclude-dir=frontend '#{Settings.source.name.capitalize}' * | xargs -I@ sed -i '' 's/#{Settings.source.name.capitalize}/#{Settings.name.capitalize}/g' @"
+      system 'git remote rm origin'
+      system 'git remote rm heroku'
+      system 'git branch | grep -v "master" | xargs git branch -D'
+      system 'rm .env'
+    end
+  end
+
+  def rename_source_files(folder)
+    excluded_files='genesis.rb,README.md,.DS.Store'
+    excluded_folders = 'frontend,node_modules'
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system "grep -rl --color --exclude-dir={#{excluded_folders}} --exclude={#{excluded_files}} '#{Settings.source.url}' * | xargs -I@ sed -i '' 's/#{Settings.source.url}/#{Settings.url}/g' @"
+      system "grep -rl --color --exclude-dir={#{excluded_folders}} --exclude={#{excluded_files}} '#{Settings.source.name}' * | xargs -I@ sed -i '' 's/#{Settings.source.name}/#{Settings.name}/g' @"
+      system "grep -rl --color --exclude-dir={#{excluded_folders}} --exclude={#{excluded_files}} '#{Settings.source.name.capitalize}' * | xargs -I@ sed -i '' 's/#{Settings.source.name.capitalize}/#{Settings.name.capitalize}/g' @"
+    end
+  end
+
+  ## BOOTSTRAP NODE ##
+  def validate_heroku_app
+    unless Settings.heroku.app.eql? '$heroku_app'
+      say 'Aborting Operation'
+      say "App already bootstrapped as : #{Setting.heroku.app}. Check setup.yml under ~/dev/blueprints/#{folder} '"
+      exit
+    end
+  end
+
+  def create_heroku_app (folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      heroku_app = "#{folder_name(Settings.url)}_#{rand(20..100)}"
+      say 'creating heroku app ...'
+      say "heroku create #{heroku_app}"
     end
   end
 end
