@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c34dfd-f57a-47ad-a16a-eebe1d12cc95" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/bin/jako" afterPath="$PROJECT_DIR$/bin/jako" />
-      <change beforePath="$PROJECT_DIR$/blueprints/itsleonid_com/env.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blueprints/itsleonid_com/setup.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blueprints/itsleonid_com/styling/fonts.sass" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blueprints/itsleonid_com/styling/overrides.sass" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/blueprints/itsleonid_com/styling/variables.sass" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.byebug_history" afterPath="$PROJECT_DIR$/.byebug_history" />
       <change beforePath="$PROJECT_DIR$/lib/node.rb" afterPath="$PROJECT_DIR$/lib/node.rb" />
-      <change beforePath="$PROJECT_DIR$/schematics/gravity.yml" afterPath="$PROJECT_DIR$/schematics/gravity.yml" />
-      <change beforePath="$PROJECT_DIR$/templates/gravity/setup.yml" afterPath="$PROJECT_DIR$/templates/gravity/setup.yml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +14,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="false" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7296137">
+    <splitter split-orientation="horizontal" split-proportion="0.5350501">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="scratch_1.env" pinned="false" current-in-tab="false">
@@ -60,8 +53,8 @@
           <file leaf-file-name="node.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/node.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="548">
-                  <caret line="152" column="46" lean-forward="false" selection-start-line="152" selection-start-column="46" selection-end-line="152" selection-end-column="46" />
+                <state relative-caret-position="375">
+                  <caret line="142" column="33" lean-forward="false" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
                   <folding />
                 </state>
               </provider>
@@ -84,8 +77,8 @@
           <file leaf-file-name="node.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/node.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="124" column="1" lean-forward="false" selection-start-line="124" selection-start-column="1" selection-end-line="124" selection-end-column="1" />
+                <state relative-caret-position="443">
+                  <caret line="151" column="76" lean-forward="false" selection-start-line="151" selection-start-column="76" selection-end-line="151" selection-end-column="76" />
                   <folding />
                 </state>
               </provider>
@@ -306,19 +299,19 @@
       <workItem from="1514448867219" duration="11891000" />
       <workItem from="1514575325383" duration="11348000" />
       <workItem from="1514931179289" duration="7834000" />
-      <workItem from="1515020105778" duration="10899000" />
+      <workItem from="1515020105778" duration="12191000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65824000" />
+    <option name="totallyTimeSpent" value="67116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27825466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27825466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -497,8 +490,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/node.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="152" column="46" lean-forward="false" selection-start-line="152" selection-start-column="46" selection-end-line="152" selection-end-column="46" />
+        <state relative-caret-position="375">
+          <caret line="142" column="33" lean-forward="false" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
           <folding />
         </state>
       </provider>

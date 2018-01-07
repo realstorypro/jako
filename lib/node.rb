@@ -16,8 +16,8 @@ class Node
     @source_path = File.expand_path('~/dev/sources')
     @build_path = File.expand_path('~/dev/builds')
 
-    @blueprints = Dir.entries(@blueprints_path) - %w[. .. .git README.md]
-    @templates = Dir.entries(@template_path) - %w[. ..]
+    @blueprints = Dir.entries(@blueprints_path) - %w[. .. .git README.md .DS_Store]
+    @templates = Dir.entries(@template_path) - %w[. .. .DS_Store]
   end
 
   def new
@@ -70,7 +70,7 @@ class Node
           @utils.divider
           say "Bootstrapping #{folder} ..."
           load_config folder
-          validate_heroku_app
+          validate_heroku_app folder
           create_heroku_app folder
         end
       end
@@ -140,19 +140,25 @@ class Node
   end
 
   ## BOOTSTRAP NODE ##
-  def validate_heroku_app
+  def validate_heroku_app (folder)
     unless Settings.heroku.app.eql? '$heroku_app'
       say 'Aborting Operation'
-      say "App already bootstrapped as : #{Setting.heroku.app}. Check setup.yml under ~/dev/blueprints/#{folder} '"
+      say "App already bootstrapped as : #{Settings.heroku.app}. Check setup.yml under ~/dev/blueprints/#{folder} '"
       exit
     end
   end
 
   def create_heroku_app (folder)
+    heroku_app = "#{folder_name(Settings.url)}_#{rand(110..350)}".gsub('_','-')
+
+    Dir.chdir("#{@blueprints_path}/#{folder}") do
+      say 'updating blueprint'
+      system "grep -rl --color  '$heroku_app' * | xargs -I@ sed -i '' 's/$heroku_app/#{heroku_app}/g' @"
+    end
+
     Dir.chdir("#{@build_path}/#{folder}") do
-      heroku_app = "#{folder_name(Settings.url)}_#{rand(20..100)}"
       say 'creating heroku app ...'
-      say "heroku create #{heroku_app}"
+      system "heroku create #{heroku_app} -t leonid-io"
     end
   end
 end
