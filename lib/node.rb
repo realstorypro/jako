@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/AbcSize #
+
 require 'singleton'
 require 'config'
 require 'byebug'
@@ -20,9 +22,11 @@ class Node
     @templates = Dir.entries(@template_path) - %w[. .. .DS_Store]
   end
 
-  def new
-    url = ask('What is the url?')
+  def new_blueprint
     @utils.divider
+    @utils.divider
+
+    url = ask("What's the url?")
 
     # Transform the url in the folder name
     blueprint_folder = folder_name(url)
@@ -30,15 +34,19 @@ class Node
     # Make sure the folder doesnt already exist
     validate_blueprint_folder(blueprint_folder)
 
+    @utils.divider
+    @utils.divider
+
     # choose template
     choose do |menu|
       menu.prompt = 'Which template?'
       @templates.each do |folder|
         menu.choice(folder.tr('_', '.')) do
           @utils.divider
+          @utils.divider
           say "Copying #{folder} ..."
-          @template_folder = folder
-        end
+            @template_folder = folder
+          end
       end
     end
 
@@ -57,6 +65,7 @@ class Node
           copy_source_to folder
           cleanup_build folder
           rename_source_files folder
+          commit_changes folder
         end
       end
     end
@@ -68,13 +77,23 @@ class Node
       @blueprints.each do |folder|
         menu.choice(folder.tr('_', '.')) do
           @utils.divider
+          @utils.divider
           say "Bootstrapping #{folder} ..."
           load_config folder
-          validate_heroku_app folder
-          create_heroku_app folder
+          create_heroku_app folder unless heroku_app_exists?(folder)
+          configure_heroku_addons folder
+          set_heroku_env_variables folder
+          set_local_env_variables folder
+          publish_to_heroku folder
+          setup_heroku_db folder
+          enable_heroku_production folder
         end
       end
     end
+  end
+
+  def publish
+
   end
 
   private
@@ -105,6 +124,7 @@ class Node
   def load_config(folder)
     # Load Blueprint & Schematic
     Config.load_and_set_settings "#{@blueprints_path}/#{folder}/setup.yml"
+    Settings.add_source! "#{@blueprints_path}/#{folder}/env.yml"
     Settings.add_source! "#{@schematics_path}/#{Settings.schematic}.yml"
     Settings.reload!
 
@@ -120,7 +140,7 @@ class Node
     FileUtils.copy_entry "#{@source_path}/#{Settings.source.folder}", "#{@build_path}/#{folder}"
   end
 
-  def cleanup_build (folder)
+  def cleanup_build(folder)
     Dir.chdir("#{@build_path}/#{folder}") do
       system 'git remote rm origin'
       system 'git remote rm heroku'
@@ -139,16 +159,20 @@ class Node
     end
   end
 
-  ## BOOTSTRAP NODE ##
-  def validate_heroku_app (folder)
-    unless Settings.heroku.app.eql? '$heroku_app'
-      say 'Aborting Operation'
-      say "App already bootstrapped as : #{Settings.heroku.app}. Check setup.yml under ~/dev/blueprints/#{folder} '"
-      exit
+
+  def commit_changes(folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system "git commit -am 'built complete'"
     end
   end
 
-  def create_heroku_app (folder)
+  ## BOOTSTRAP NODE ##
+  def heroku_app_exists?(folder)
+    return false if Settings.heroku.app.eql? '$heroku_app'
+    true
+  end
+
+  def create_heroku_app(folder)
     heroku_app = "#{folder_name(Settings.url)}_#{rand(110..350)}".gsub('_','-')
 
     Dir.chdir("#{@blueprints_path}/#{folder}") do
@@ -157,8 +181,85 @@ class Node
     end
 
     Dir.chdir("#{@build_path}/#{folder}") do
-      say 'creating heroku app ...'
+      @utils.divider
+      @utils.divider
+      say 'creating heroku application'
+      @utils.divider
+      @utils.divider
       system "heroku create #{heroku_app} -t leonid-io"
     end
   end
+
+  def configure_heroku_addons(folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      @utils.divider
+      @utils.divider
+      say 'configuring heroku application'
+      @utils.divider
+      @utils.divider
+      system 'heroku buildpacks:set heroku/nodejs'
+      system 'heroku buildpacks:add heroku/ruby'
+      Settings.heroku.addons.each do |addon|
+        system "heroku addons:create #{addon}"
+      end
+    end
+  end
+
+  def set_heroku_env_variables(folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      @utils.divider
+      @utils.divider
+      say 'setting global env variables'
+      @utils.divider
+      @utils.divider
+      Settings.env.each do |env_var|
+        var_name = env_var[0].to_s
+        var_value = env_var[1].to_s
+        system "heroku config:set #{var_name}=#{var_value}"
+      end
+    end
+  end
+
+  def set_local_env_variables(folder)
+    @utils.divider
+    @utils.divider
+    say 'setting local env variables'
+    @utils.divider
+    @utils.divider
+    Dir.chdir("#{@build_path}/#{folder}") do
+      Settings.env.each do |env_var|
+        var_name = env_var[0].to_s
+        var_value = env_var[1].to_s
+        system "echo #{var_name}=#{var_value} >> .env"
+      end
+    end
+  end
+
+  def setup_heroku_db(folder)
+    @utils.divider
+    @utils.divider
+    say 'setting up heroku db'
+    @utils.divider
+    @utils.divider
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system 'heroku run rake db:migrate'
+      system 'heroku run rake db:seed'
+      system 'heroku run rake genesis:colors:setup'
+    end
+  end
+
+  def publish_to_heroku(folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system 'git push heroku master'
+    end
+  end
+
+  def enable_heroku_production(folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system "heroku domains:add #{Settings.url}"
+      system 'heroku ps:resize web=hobby'
+    end
+  end
 end
+
+# rubocop:enable Metrics/AbcSize #

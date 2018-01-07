@@ -5,3 +5,6 @@ gem 'config'
 
 # debugging
 gem 'byebug'
+gem 'foreman'
+gem 'rake'
+gem 'rails'

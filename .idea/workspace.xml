@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="26c34dfd-f57a-47ad-a16a-eebe1d12cc95" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.byebug_history" afterPath="$PROJECT_DIR$/.byebug_history" />
+      <change beforePath="$PROJECT_DIR$/.idea/cli.iml" afterPath="$PROJECT_DIR$/.idea/cli.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change beforePath="$PROJECT_DIR$/bin/jako" afterPath="$PROJECT_DIR$/bin/jako" />
       <change beforePath="$PROJECT_DIR$/lib/node.rb" afterPath="$PROJECT_DIR$/lib/node.rb" />
+      <change beforePath="$PROJECT_DIR$/schematics/gravity.yml" afterPath="$PROJECT_DIR$/schematics/gravity.yml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,48 +20,23 @@
   </component>
   <component name="ChangesViewManager" flattened_view="false" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5350501">
+    <splitter split-orientation="horizontal" split-proportion="0.29613733">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="scratch_1.env" pinned="false" current-in-tab="false">
-            <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.env">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/README.md">
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="274">
-                    <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-                    <folding />
-                  </first_editor>
-                  <second_editor />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="jako" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bin/jako">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
+        <leaf>
           <file leaf-file-name="node.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/node.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="142" column="33" lean-forward="false" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
-                  <folding />
+                <state relative-caret-position="445">
+                  <caret line="87" column="31" lean-forward="false" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#156#620#0" expanded="false" />
+                    <element signature="e#624#1313#0" expanded="false" />
+                    <element signature="e#1317#1751#0" expanded="false" />
+                    <element signature="e#2421#2545#0" expanded="false" />
+                    <element signature="e#2549#2881#0" expanded="false" />
+                    <element signature="e#2885#3125#0" expanded="false" />
+                    <element signature="e#3151#3546#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -63,8 +44,8 @@
           <file leaf-file-name="gravity.yml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/schematics/gravity.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+                <state relative-caret-position="165">
+                  <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -77,8 +58,18 @@
           <file leaf-file-name="node.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/node.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="443">
-                  <caret line="151" column="76" lean-forward="false" selection-start-line="151" selection-start-column="76" selection-end-line="151" selection-end-column="76" />
+                <state relative-caret-position="-877">
+                  <caret line="164" column="24" lean-forward="false" selection-start-line="164" selection-start-column="24" selection-end-line="164" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Gemfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -105,6 +96,15 @@
       <find>folder_name</find>
       <find>YAML</find>
       <find>source</find>
+      <find>- heroku</find>
+      <find>loead_co</find>
+      <find>load_config</find>
+      <find>env</find>
+      <find>rubocop disable</find>
+      <find>post</find>
+      <find>divider</find>
+      <find>@Utils</find>
+      <find>-am</find>
     </findStrings>
     <replaceStrings>
       <replace>Jacko-cli</replace>
@@ -116,6 +116,8 @@
       <replace>Gravity</replace>
       <replace>rungravity.com</replace>
       <replace>gravity</replace>
+      <replace>system &quot;heroku</replace>
+      <replace>@utils</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -165,19 +167,19 @@
         <option value="$PROJECT_DIR$/source/gravity/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/source/gravity/config/initializers/genesis.rb" />
         <option value="$PROJECT_DIR$/source/gravity/config/database.yml" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.env" />
         <option value="$PROJECT_DIR$/source/gravity/Gemfile" />
         <option value="$PROJECT_DIR$/source/gravity/README.md" />
         <option value="$PROJECT_DIR$/source/gravity/frontend/packs/client_js.coffee" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/assets/blueprints/itsleonid_com/setup.yml" />
         <option value="$PROJECT_DIR$/assets/schematics/gravity.yml" />
-        <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/schematics/gravity.yml" />
-        <option value="$PROJECT_DIR$/bin/jako" />
         <option value="$PROJECT_DIR$/blueprints/itsleonid_com/env.yml" />
         <option value="$PROJECT_DIR$/blueprints/itsleonid_com/setup.yml" />
         <option value="$PROJECT_DIR$/templates/gravity/setup.yml" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.env" />
+        <option value="$PROJECT_DIR$/bin/jako" />
+        <option value="$PROJECT_DIR$/schematics/gravity.yml" />
+        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/lib/node.rb" />
       </list>
     </option>
@@ -299,13 +301,13 @@
       <workItem from="1514448867219" duration="11891000" />
       <workItem from="1514575325383" duration="11348000" />
       <workItem from="1514931179289" duration="7834000" />
-      <workItem from="1515020105778" duration="12191000" />
+      <workItem from="1515020105778" duration="21761000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67116000" />
+    <option name="totallyTimeSpent" value="76686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="0" />
@@ -417,37 +419,10 @@
     <entry file="file://$PROJECT_DIR$/source/gravity/.rubocop.yml" />
     <entry file="file://$PROJECT_DIR$/source/gravity/config/initializers/genesis.rb" />
     <entry file="file://$PROJECT_DIR$/source/gravity/config/environments/production.rb" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/gravity/Gemfile" />
     <entry file="file://$PROJECT_DIR$/source/gravity/README.md" />
     <entry file="file://$PROJECT_DIR$/source/gravity/frontend/packs/client_js.coffee" />
     <entry file="file://$PROJECT_DIR$/source/gravity/frontend/packs/client_css.js" />
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="274">
-            <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blueprints/itsleonid_com/env.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -464,22 +439,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/jako">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="30" lean-forward="false" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schematics/gravity.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/gravity/setup.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -488,11 +447,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="274">
+            <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/jako">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="38" column="2" lean-forward="false" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schematics/gravity.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/node.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="142" column="33" lean-forward="false" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="445">
+          <caret line="87" column="31" lean-forward="false" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+          <folding>
+            <element signature="e#156#620#0" expanded="false" />
+            <element signature="e#624#1313#0" expanded="false" />
+            <element signature="e#1317#1751#0" expanded="false" />
+            <element signature="e#2421#2545#0" expanded="false" />
+            <element signature="e#2549#2881#0" expanded="false" />
+            <element signature="e#2885#3125#0" expanded="false" />
+            <element signature="e#3151#3546#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

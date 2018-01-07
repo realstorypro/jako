@@ -3,7 +3,7 @@ source:
   url: dev.rungravity.com
   name: gravity
 
-heorku:
+heroku:
   addons:
     - sendgrid:starter
     - scheduler:standard

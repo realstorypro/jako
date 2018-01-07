@@ -20,19 +20,19 @@ command :prompt do |c|
   c.action do
     welcome_message
     choose do |menu|
-      menu.prompt = 'How can I help you?'
-      @utils.divider
-      menu.choice('Add new node') do
-        @utils.divider
-        Node.instance.new()
+      menu.choice('Add blueprint') do
+        Node.instance.new_blueprint
       end
-      menu.choice('Build a node') do
+      menu.choice('Create a build') do
         @utils.divider
         Node.instance.build()
       end
-      menu.choice('Bootstrap node') do
+      menu.choice('Bootstrap the build') do
         @utils.divider
         Node.instance.bootstrap()
+      end
+      menu.choice('Publish build') do
+
       end
     end
   end
@@ -42,6 +42,7 @@ private
 
 def welcome_message
   @utils.divider
-  puts '----------- JAKO - Factory Worker with Attitude ----------'
+  puts '-------------------- Hello, I am JAKO --------------------'
+  puts '-------------------- AI with Attitude --------------------'
   @utils.divider
 end
