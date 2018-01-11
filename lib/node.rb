@@ -53,7 +53,16 @@ class Node
     copy_blueprint(@template_folder, blueprint_folder)
   end
 
-  def build
+  def new_build
+    build
+  end
+
+  def update_build
+    build true
+  end
+
+
+  def build(update=false)
     choose do |menu|
       menu.prompt = 'Which node?'
       @blueprints.each do |folder|
@@ -66,34 +75,24 @@ class Node
           cleanup_build folder
           rename_source_files folder
           commit_changes folder
-        end
-      end
-    end
-  end
+          link_heroku_app folder if update
 
-  def bootstrap
-    choose do |menu|
-      menu.prompt = 'Which node?'
-      @blueprints.each do |folder|
-        menu.choice(folder.tr('_', '.')) do
           @utils.divider
           @utils.divider
+
           say "Bootstrapping #{folder} ..."
-          load_config folder
           create_heroku_app folder unless heroku_app_exists?(folder)
-          configure_heroku_addons folder
+          configure_heroku_addons folder, update
           set_heroku_env_variables folder
           set_local_env_variables folder
+          backup_db folder
           publish_to_heroku folder
           setup_heroku_db folder
-          enable_heroku_production folder
+
+          enable_heroku_production folder unless update
         end
       end
     end
-  end
-
-  def publish
-
   end
 
   private
@@ -166,6 +165,12 @@ class Node
     end
   end
 
+  def link_heroku_app(folder)
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system "heroku git:remote -a #{Settings.heroku.app}"
+    end
+  end
+
   ## BOOTSTRAP NODE ##
   def heroku_app_exists?(folder)
     return false if Settings.heroku.app.eql? '$heroku_app'
@@ -190,7 +195,7 @@ class Node
     end
   end
 
-  def configure_heroku_addons(folder)
+  def configure_heroku_addons(folder, update=false)
     Dir.chdir("#{@build_path}/#{folder}") do
       @utils.divider
       @utils.divider
@@ -235,6 +240,17 @@ class Node
     end
   end
 
+  def backup_db(folder)
+    @utils.divider
+    @utils.divider
+    say 'backing up heroku db'
+    @utils.divider
+    @utils.divider
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system 'heroku pg:backups:capture'
+    end
+  end
+
   def setup_heroku_db(folder)
     @utils.divider
     @utils.divider
@@ -250,7 +266,7 @@ class Node
 
   def publish_to_heroku(folder)
     Dir.chdir("#{@build_path}/#{folder}") do
-      system 'git push heroku master'
+      system 'git push -f heroku master'
     end
   end
 

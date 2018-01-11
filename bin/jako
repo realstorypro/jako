@@ -20,19 +20,16 @@ command :prompt do |c|
   c.action do
     welcome_message
     choose do |menu|
-      menu.choice('Add blueprint') do
+      menu.choice('New blueprint') do
         Node.instance.new_blueprint
       end
-      menu.choice('Create a build') do
+      menu.choice('New build') do
         @utils.divider
-        Node.instance.build()
+        Node.instance.new_build
       end
-      menu.choice('Bootstrap the build') do
+      menu.choice('Update build') do
         @utils.divider
-        Node.instance.bootstrap()
-      end
-      menu.choice('Publish build') do
-
+        Node.instance.update_build
       end
     end
   end
