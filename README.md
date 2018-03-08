@@ -8,93 +8,59 @@ Radiant9 Development CLI
 #### Capabilities
 - Create Site
 - Build Site
-- Bootstrap Site
-- Release Site
-- Build All Sites
-- Release All Sites
+- Update Site
+- Update All Sites *(Coming Soon)*
 
 #### Commands
 
 ##### Launch GUI Interface
 ```bash
-$ jako 
+$ ./bin/jako 
 ```
 
-
-##### Create New Site
-```bash
-$ jako new www.radiant9.com
-```
-
-##### Build Site
-```bash
-$ jako build www.radiant9.com
-```
-
-##### Bootstrap Site
-```bash
-$ jako bootstrap www.radiant9.com --env development
-```
-
-##### Publish Site to Heroku
-```bash
-$ jako publish www.radiant9.com
-```
-
-##### Build All Sites
-```bash
-$ jako build all
-```
-
-##### Publish All Sites
-```bash
-$ jako publish all
-```
 
 ## Folder Structure
 
+Jacko is located here
 ```bash
 $ ~/dev/jako
-$ ~/dev/jako/blueprints
+```
+
+Schematics used by jako are located here
+```bash
+$ ~/dev/jako/schematics
+```
+
+Templates for jako are located here
+```bash
 $ ~/dev/jako/templates
+```
 
-$ ~/dev/gems/ui
-$ ~/dev/gems/genesis
-$ ~/dev/source/gravity/schematic.yml # move schematics here
+Blueprints are stored here. They're source controlled.
+```bash
+$ ~/dev/blueprints 
+```
 
-$ ~/prod/sources/gravity
-$ ~/prod/builds/radiant9_com
-$ ~/prod/builds/aniwa_co
+Builds are stored here. They're not source controlled.
+```bash
+$ ~/dev/builds // where the builds live
+```
+
+Sources are stored here.
+```bash
+$ ~/dev/sources
 ```
 
 #### Sources
 
 #### Blueprints
-- setup.yml
-  * heroku app
-  * name
-  * url
-- schematic.yml
-  * heroku addons
-  * source map
-- env.yml
-  * aws (s3)
-  * aws (cloudfront)
-  * uploadcare
-  * segment
-  * from_email
-  * url
+- setup.yml - automatically generated
+- env.yml - needs to be manually populated
+- **files** folder is located here. They contents of the folder are copied
+to the build folder for the blueprint.
 
 #### Schematics
+- Source Folder
+- Replace Pattern for URL and Name
 - Heroku Addons
-- Replace Pattern
-
-### Builds
-
-#### APIs
-- GitHub
-- Heroku
-- CodeShip
-- AWS (S3)
-- AWS (CloudFront)
 
