@@ -1,4 +1,4 @@
-# Jacko
+# JAKO
 Worker with Attitude. Version 1.0.0
 
 #### Purpose
