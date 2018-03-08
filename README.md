@@ -1,5 +1,5 @@
 # Jacko
-Radiant9 Development CLI
+Worker with Attitude. Version 1.0.0
 
 #### Purpose
 - Site Management.

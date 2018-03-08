@@ -9,8 +9,8 @@ require './lib/helpers/utils'
 @utils = Utils.instance
 
 program :name, 'Jako'
-program :version, '0.5.0'
-program :description, 'Factory worker with attitude'
+program :version, '1.0.0'
+program :description, 'Worker with attitude'
 
 default_command :prompt
 
@@ -40,6 +40,6 @@ private
 def welcome_message
   @utils.divider
   puts '-------------------- Hello, I am JAKO --------------------'
-  puts '-------------------- AI with Attitude --------------------'
+  puts '------------------ Worker with Attitude ------------------'
   @utils.divider
 end
