@@ -18,7 +18,7 @@ class Node
     @source_path = File.expand_path('~/dev/sources')
     @build_path = File.expand_path('~/dev/builds')
 
-    @blueprints = Dir.entries(@blueprints_path) - %w[. .. .git README.md .DS_Store]
+    @blueprints = Dir.entries(@blueprints_path) - %w[. .. .git .gitignore .idea README.md .DS_Store]
     @templates = Dir.entries(@template_path) - %w[. .. .DS_Store]
   end
 
@@ -51,6 +51,7 @@ class Node
     end
 
     copy_blueprint(@template_folder, blueprint_folder)
+    update_setup_file(url, blueprint_folder)
   end
 
   def new_build
@@ -74,6 +75,7 @@ class Node
           copy_source_to folder
           cleanup_build folder
           rename_source_files folder
+          copy_blueprint_files folder
           commit_changes folder
           link_heroku_app folder if update
 
@@ -82,12 +84,13 @@ class Node
 
           say "Bootstrapping #{folder} ..."
           create_heroku_app folder unless heroku_app_exists?(folder)
-          configure_heroku_addons folder, update
+          configure_heroku_addons folder unless update
           set_heroku_env_variables folder
           set_local_env_variables folder
           backup_db folder
           publish_to_heroku folder
           setup_heroku_db folder
+          seed_heroku_db folder unless update
 
           enable_heroku_production folder unless update
         end
@@ -117,6 +120,17 @@ class Node
   def copy_blueprint(template_folder, blueprint_folder)
     say "adding blueprint to: #{blueprint_folder} under ~/dev/blueprints"
     FileUtils.copy_entry "#{@template_path}/#{template_folder}", "#{@blueprints_path}/#{blueprint_folder}"
+  end
+
+  def update_setup_file(url, blueprint_folder)
+    app_name = url.gsub('www.', '').tr('.', '')
+    say "setting app name to #{app_name}"
+    say "setting url name to #{url}"
+
+    Dir.chdir("#{@blueprints_path}/#{blueprint_folder}") do
+      system "grep -rl --color  '$name' * | xargs -I@ sed -i '' 's/$name/#{app_name}/g' @"
+      system "grep -rl --color  '$url' * | xargs -I@ sed -i '' 's/$url/#{url}/g' @"
+    end
   end
 
   ## BUILD SECTION ##
@@ -158,6 +172,15 @@ class Node
     end
   end
 
+  def copy_blueprint_files(folder)
+    say 'copying blueprint files'
+    FileUtils.cp_r "#{@blueprints_path}/#{folder}/files/.", "#{@build_path}/#{folder}"
+
+    #Dir.chdir("#{@build_path}/#{folder}") do
+    #  system "yes | cp -rf "
+    #end
+  end
+
 
   def commit_changes(folder)
     Dir.chdir("#{@build_path}/#{folder}") do
@@ -195,7 +218,7 @@ class Node
     end
   end
 
-  def configure_heroku_addons(folder, update=false)
+  def configure_heroku_addons(folder)
     Dir.chdir("#{@build_path}/#{folder}") do
       @utils.divider
       @utils.divider
@@ -259,8 +282,18 @@ class Node
     @utils.divider
     Dir.chdir("#{@build_path}/#{folder}") do
       system 'heroku run rake db:migrate'
-      system 'heroku run rake db:seed'
       system 'heroku run rake genesis:colors:setup'
+    end
+  end
+
+  def seed_heroku_db(folder)
+    @utils.divider
+    @utils.divider
+    say 'setting up heroku db'
+    @utils.divider
+    @utils.divider
+    Dir.chdir("#{@build_path}/#{folder}") do
+      system 'heroku run rake db:seed'
     end
   end
 

@@ -10,3 +10,4 @@ heroku:
     - papertrail:choklad
     - heroku-redis:hobby-dev
     - heroku-postgresql:hobby-dev
+
