@@ -1,0 +1,7 @@
+schematic: gravity
+
+name: $name
+url: $url
+
+heroku:
+  app: $heroku_app

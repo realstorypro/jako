@@ -1,0 +1,13 @@
+en:
+  app:
+    name: 'Gravity'
+    description: 'Lorem ipsum dolore sit amet'
+    url: 'https://dev.rungravity.com'
+    about: 'We are a technology company dedicated to shifting the global culture towards innovation, thought leadership and entrepreneurship.'
+    contact:
+      phone: '1.800.608.5963'
+      email: 'support@gravity.com'
+      address1: '2 E Congress St. Suite 900'
+      address2: 'Tucson, Arizona 85701'
+      address3: 'United States'
+    copyrights: '2017 Radiant9'

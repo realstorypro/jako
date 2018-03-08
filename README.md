@@ -1,79 +1,66 @@
-# JACKO
-Business autmoator with attitude. DevOS Approved. Rubymade.
+# Jacko
+Worker with Attitude. Version 1.0.0
 
-## Purpose
-- Help with build management.
+#### Purpose
+- Site Management.
+- Code Sharing Automation.
 
+#### Capabilities
+- Create Site
+- Build Site
+- Update Site
+- Update All Sites *(Coming Soon)*
 
+#### Commands
 
-### Source
-- \# jako:include
-
-### Makefiles
-
-### Blueprints
-
-### Builds
-
-## APIs
-- GitHub
-- Heroku
-- CodeShip
-- AWS (S3)
-- AWS (CloudFront)
+##### Launch GUI Interface
+```bash
+$ ./bin/jako 
+```
 
 
-# Editions
+## Folder Structure
 
-## Genesis - Base
-- Google Analytics Integration
-- Mailchimp Integration
+Jacko is located here
+```bash
+$ ~/dev/jako
+```
 
-## Commerce ($1750)
-- Shopify Integration
-- Picatic Integration
+Schematics used by jako are located here
+```bash
+$ ~/dev/jako/schematics
+```
 
-## Premium ($4500/mo)
-- Segment.io Integration
-- SalesForce Connector
+Templates for jako are located here
+```bash
+$ ~/dev/jako/templates
+```
 
+Blueprints are stored here. They're source controlled.
+```bash
+$ ~/dev/blueprints 
+```
 
+Builds are stored here. They're not source controlled.
+```bash
+$ ~/dev/builds // where the builds live
+```
 
+Sources are stored here.
+```bash
+$ ~/dev/sources
+```
 
+#### Sources
 
+#### Blueprints
+- setup.yml - automatically generated
+- env.yml - needs to be manually populated
+- **files** folder is located here. They contents of the folder are copied
+to the build folder for the blueprint.
 
-=======
-# JAKO
-Factory worker with attitude!
-
-## Purpose
-Jako is here to make managing leonid.io's fleet faster, easier and way more bad ass. It combines the power of ruby, command line interfaces, rails engines, git-submodules, implementation blueprints and other white magic to amplify the user's power 100 times in 100 different directions.
-
-## Capabilities
-- First Assembly
-- Rebuilding
-
-## Blueprint Files
-Single source of truth for: 
-
-- Env Variables
-- Heroku App
+#### Schematics
+- Source Folder
+- Replace Pattern for URL and Name
 - Heroku Addons
-- Factory GitHub Repo
-- Blueprint GitHub Repo
-- Build GitHub Repo
 
-## Initial Assembly
-- Checkout the Factory Repo
-- Check out the Blueprint Repo
-- Push the Factory+Blueprint to Built Repo
-
-## Rebuilding
-- Rebuilds Heroku Local & ENV
-- Procfiles
-- Rubocop
-
-## Git Help
-- Pushing to Factory Repo
-- Pushing to Built Repo
-- Fetching from Factory Repo

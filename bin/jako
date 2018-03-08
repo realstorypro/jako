@@ -9,8 +9,8 @@ require './lib/helpers/utils'
 @utils = Utils.instance
 
 program :name, 'Jako'
-program :version, '0.5.0'
-program :description, 'Factory worker with attitude'
+program :version, '1.0.0'
+program :description, 'Worker with attitude'
 
 default_command :prompt
 
@@ -20,15 +20,16 @@ command :prompt do |c|
   c.action do
     welcome_message
     choose do |menu|
-      menu.prompt = 'How can I help you?'
-      @utils.divider
-      menu.choice('Add new node') do
-        @utils.divider
-        Node.instance.new()
+      menu.choice('New blueprint') do
+        Node.instance.new_blueprint
       end
-      menu.choice('Build a node') do
+      menu.choice('New build') do
         @utils.divider
-        Node.instance.build()
+        Node.instance.new_build
+      end
+      menu.choice('Update build') do
+        @utils.divider
+        Node.instance.update_build
       end
     end
   end
@@ -38,6 +39,7 @@ private
 
 def welcome_message
   @utils.divider
-  puts '----------- JAKO - Factory Worker with Attitude ----------'
+  puts '-------------------- Hello, I am JAKO --------------------'
+  puts '------------------ Worker with Attitude ------------------'
   @utils.divider
 end

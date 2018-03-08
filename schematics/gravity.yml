@@ -1,14 +1,13 @@
-# source folder we're using
-source: gravity
+source:
+  folder: gravity
+  url: dev.rungravity.com
+  name: gravity
 
-replace:
-  url: www.radiant9.com
-  name: radiant9
-
-heorku:
+heroku:
   addons:
     - sendgrid:starter
     - scheduler:standard
     - papertrail:choklad
     - heroku-redis:hobby-dev
     - heroku-postgresql:hobby-dev
+
