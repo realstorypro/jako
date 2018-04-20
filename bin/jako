@@ -9,7 +9,7 @@ require './lib/helpers/utils'
 @utils = Utils.instance
 
 program :name, 'Jako'
-program :version, '1.0.0'
+program :version, '1.0.5'
 program :description, 'Worker with attitude'
 
 default_command :prompt
