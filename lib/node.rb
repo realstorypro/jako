@@ -245,6 +245,9 @@ class Node
         var_value = env_var[1].to_s
         system "heroku config:set #{var_name}=#{var_value}"
       end
+
+      # Pull in database URL fom produciton and set BLAZER_DATABASE_URL to that
+      system "heroku config:get DATABASE_URL | xargs -I '{}' heroku config:set BLAZER_DATABASE_URL='{}'"
     end
   end
 
@@ -283,6 +286,7 @@ class Node
     Dir.chdir("#{@build_path}/#{folder}") do
       system 'heroku run rake db:migrate'
       system 'heroku run rake genesis:colors:setup'
+      system 'heroku run rake genesis:roles:setup'
     end
   end
 
