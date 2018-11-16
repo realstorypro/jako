@@ -2,9 +2,6 @@ source 'http://rubygems.org'
 
 gem 'commander'
 gem 'config'
+gem 'platform-api'
 
-# debugging
 gem 'byebug'
-gem 'foreman'
-gem 'rake'
-gem 'rails'

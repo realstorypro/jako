@@ -3,14 +3,13 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'commander/import'
-require './lib/node'
 require './lib/helpers/utils'
 
 @utils = Utils.instance
 
 program :name, 'Jako'
-program :version, '1.0.5'
-program :description, 'Worker with attitude'
+program :version, '1.0.0'
+program :description, 'CLI Fleet Management'
 
 default_command :prompt
 
@@ -19,19 +18,6 @@ command :prompt do |c|
   c.description = 'jako default prompt'
   c.action do
     welcome_message
-    choose do |menu|
-      menu.choice('New blueprint') do
-        Node.instance.new_blueprint
-      end
-      menu.choice('New build') do
-        @utils.divider
-        Node.instance.new_build
-      end
-      menu.choice('Update build') do
-        @utils.divider
-        Node.instance.update_build
-      end
-    end
   end
 end
 
@@ -39,7 +25,7 @@ private
 
 def welcome_message
   @utils.divider
-  puts '-------------------- Hello, I am JAKO --------------------'
-  puts '------------------ Worker with Attitude ------------------'
+  puts '------------------- I am Jako ---------------------'
+  puts '------------------ Which Ship? --------------------'
   @utils.divider
 end
