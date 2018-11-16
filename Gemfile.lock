@@ -42,6 +42,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-logic (~> 0.4, >= 0.4.0)
       dry-types (~> 0.12.0)
+    equatable (0.5.0)
     erubis (2.7.0)
     excon (0.62.0)
     heroics (0.0.25)
@@ -56,12 +57,31 @@ GEM
     minitest (5.10.3)
     moneta (1.0.0)
     multi_json (1.13.1)
+    necromancer (0.4.0)
+    pastel (0.7.2)
+      equatable (~> 0.5.0)
+      tty-color (~> 0.4.0)
     platform-api (2.2.0)
       heroics (~> 0.0.25)
       moneta (~> 1.0.0)
     thread_safe (0.3.6)
+    timers (4.2.0)
+    tty-color (0.4.3)
+    tty-cursor (0.6.0)
+    tty-prompt (0.17.2)
+      necromancer (~> 0.4.0)
+      pastel (~> 0.7.0)
+      timers (~> 4.0)
+      tty-cursor (~> 0.6.0)
+      tty-reader (~> 0.4.0)
+    tty-reader (0.4.0)
+      tty-cursor (~> 0.6.0)
+      tty-screen (~> 0.6.4)
+      wisper (~> 2.0.0)
+    tty-screen (0.6.5)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
+    wisper (2.0.0)
 
 PLATFORMS
   ruby
@@ -71,6 +91,7 @@ DEPENDENCIES
   commander
   config
   platform-api
+  tty-prompt
 
 BUNDLED WITH
    1.17.1

@@ -5,6 +5,8 @@ require 'bundler/setup'
 require 'commander/import'
 require './lib/helpers/utils'
 require 'platform-api'
+require 'byebug'
+require 'tty-prompt'
 
 @utils = Utils.instance
 
@@ -18,10 +20,18 @@ command :prompt do |c|
   c.syntax = 'jako'
   c.description = 'jako default prompt'
   c.action do
-    welcome_message
+    heroku = PlatformAPI.connect_oauth(ENV['HEROKU_API'])
+    prompt = TTY::Prompt.new
 
-    # TODO: This needs to come from an envirnmental variable
-    heroku = PlatformAPI.connect_oauth('7db959c1-b227-4fcf-98c4-194b04539fd2')
+    system 'clear'
+    speak 'Welcome to Jako'
+    puts 'Welcome to Jako'
+    @utils.divider
+
+    sleep(3)
+    puts 'Be safe. In the real world there is no undo.'
+    speak 'Be safe. In the real world there is no undo.'
+    @utils.divider
 
     # TODO: In the future this can be populated based on schematics file instead of hardcoded
     pipeline_id = heroku.pipeline.info('aquarius-pipeline')["id"]
@@ -34,16 +44,11 @@ command :prompt do |c|
 
     # TODO: This rule can also be pulled up from a schematics file instead of being hardcoded
     apps.reject! {|app| app["name"].match? /aquarius/ }
-    app_names = apps.collect {|app| app["name"] }
-    puts app_names
+    app_names = []
+    apps.each { |app| app_names << app["name"] }
+
+    chosen_app_name = prompt.select('Pick an Instance:', app_names)
+    chosen_app = apps.select { |app| app["name"] == chosen_app_name }
+
   end
-end
-
-private
-
-def welcome_message
-  @utils.divider
-  puts '------------------- I am Jako ---------------------'
-  puts '------------------ Which Ship? --------------------'
-  @utils.divider
 end
