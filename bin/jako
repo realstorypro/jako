@@ -4,6 +4,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'commander/import'
 require './lib/helpers/utils'
+require 'platform-api'
 
 @utils = Utils.instance
 
@@ -18,6 +19,23 @@ command :prompt do |c|
   c.description = 'jako default prompt'
   c.action do
     welcome_message
+
+    # TODO: This needs to come from an envirnmental variable
+    heroku = PlatformAPI.connect_oauth('7db959c1-b227-4fcf-98c4-194b04539fd2')
+
+    # TODO: In the future this can be populated based on schematics file instead of hardcoded
+    pipeline_id = heroku.pipeline.info('aquarius-pipeline')["id"]
+    couplings = heroku.pipeline_coupling.list_by_pipeline(pipeline_id)
+    apps = []
+    couplings.each do |coupling|
+      app_id = coupling["app"]["id"]
+      apps << heroku.app.info(app_id)
+    end
+
+    # TODO: This rule can also be pulled up from a schematics file instead of being hardcoded
+    apps.reject! {|app| app["name"].match? /aquarius/ }
+    app_names = apps.collect {|app| app["name"] }
+    puts app_names
   end
 end
 
