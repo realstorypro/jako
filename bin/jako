@@ -49,9 +49,8 @@ command :prompt do |c|
     chosen_app = apps.select{ |app| app["name"] == chosen_app_name}[0]
 
     @utils.divider
-    puts "Current Configuration ==>"
+    puts " :=== Current Configuration ===:"
     speak "Current Configuration ..."
-    @utils.divider
     @utils.divider
     sleep(2.5)
 
@@ -69,5 +68,22 @@ command :prompt do |c|
     puts "Redis Plan: #{redis_plan_name}"
     @utils.divider
     @utils.divider
+
+    puts " :=== Available Actions ===:"
+    speak "What would you like to do? ..."
+    @utils.divider
+    sleep(2.5)
+
+    choose do |menu|
+      menu.choice 'Upgrade Database Plan' do
+        @utils.divider
+        puts 'Upgrading Database'
+      end
+      menu.choice 'Rollback Database' do
+        @utils.divider
+        puts 'Rollback Database'
+      end
+    end
+
   end
 end
