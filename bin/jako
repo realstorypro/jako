@@ -50,5 +50,15 @@ command :prompt do |c|
     chosen_app_name = prompt.select('Pick an Instance:', app_names)
     chosen_app = apps.select { |app| app["name"] == chosen_app_name }
 
+    @utils.divider
+    puts "Listing Addons for #{chosen_app_name}"
+    speak "Listing Addons for #{chosen_app_name}"
+    @utils.divider
+    sleep(2.5)
+
+    app_addons = heroku.addon.list_by_app(chosen_app_name)
+    db_addon = app_addons.select{|addon| addon["name"].match? /postgres/}[0]
+    db_plan_name = db_addon['plan']['name']
+    puts db_plan_name
   end
 end
