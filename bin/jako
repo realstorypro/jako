@@ -3,14 +3,16 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'commander/import'
-require './lib/node'
 require './lib/helpers/utils'
+require 'platform-api'
+require 'byebug'
+require 'tty-prompt'
 
 @utils = Utils.instance
 
 program :name, 'Jako'
-program :version, '1.0.5'
-program :description, 'Worker with attitude'
+program :version, '1.0.0'
+program :description, 'CLI Fleet Management'
 
 default_command :prompt
 
@@ -18,28 +20,54 @@ command :prompt do |c|
   c.syntax = 'jako'
   c.description = 'jako default prompt'
   c.action do
-    welcome_message
-    choose do |menu|
-      menu.choice('New blueprint') do
-        Node.instance.new_blueprint
-      end
-      menu.choice('New build') do
-        @utils.divider
-        Node.instance.new_build
-      end
-      menu.choice('Update build') do
-        @utils.divider
-        Node.instance.update_build
-      end
+    heroku = PlatformAPI.connect_oauth(ENV['HEROKU_API'])
+    prompt = TTY::Prompt.new
+
+    system 'clear'
+    speak 'Welcome to Jako'
+    puts 'Welcome to Jako'
+    @utils.divider
+
+    puts 'Be safe. In the real world there is no undo.'
+    @utils.divider
+
+    # TODO: In the future this can be populated based on schematics file instead of hardcoded
+    pipeline_id = heroku.pipeline.info('aquarius-pipeline')["id"]
+    couplings = heroku.pipeline_coupling.list_by_pipeline(pipeline_id)
+    apps = []
+    couplings.each do |coupling|
+      app_id = coupling["app"]["id"]
+      apps << heroku.app.info(app_id)
     end
+
+    # TODO: This rule can also be pulled up from a schematics file instead of being hardcoded
+    apps.reject! {|app| app["name"].match? /aquarius/ }
+    app_names = []
+    apps.each { |app| app_names << app["name"] }
+
+    chosen_app_name = prompt.select('Pick an Instance:', app_names)
+    chosen_app = apps.select{ |app| app["name"] == chosen_app_name}[0]
+
+    @utils.divider
+    puts "Current Configuration ==>"
+    speak "Current Configuration ..."
+    @utils.divider
+    @utils.divider
+    sleep(2.5)
+
+    app_addons = heroku.addon.list_by_app(chosen_app_name)
+    db_addon = app_addons.select{|addon| addon["name"].match? /postgres/}[0]
+    db_plan_name = db_addon['plan']['name'].gsub!('heroku-postgresql:','')
+
+    puts "Name: #{chosen_app["name"]}"
+    puts "ID: #{chosen_app["id"]}"
+    puts "Database Plan: #{db_plan_name}"
+
+    redis_addon = app_addons.select{|addon| addon["name"].match? /redis/}[0]
+    redis_plan_name = redis_addon['plan']['name'].gsub!('heroku-redis:','')
+
+    puts "Redis Plan: #{redis_plan_name}"
+    @utils.divider
+    @utils.divider
   end
-end
-
-private
-
-def welcome_message
-  @utils.divider
-  puts '-------------------- Hello, I am JAKO --------------------'
-  puts '------------------ Worker with Attitude ------------------'
-  @utils.divider
 end
