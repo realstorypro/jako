@@ -77,7 +77,20 @@ command :prompt do |c|
     choose do |menu|
       menu.choice 'Upgrade Database Plan' do
         @utils.divider
-        puts 'Upgrading Database'
+        puts " :=== Pick New Plan ===:"
+        @utils.divider
+
+        choose do |menu|
+          menu.choice 'hobby-dev ($0/mo)' do
+          end
+          menu.choice 'hobby-basic ($9/mo)' do
+          end
+          menu.choice 'standard-0 ($50/mo)' do
+          end
+          menu.choice 'premium-0 ($200/mo)' do
+          end
+        end
+
       end
       menu.choice 'Rollback Database' do
         @utils.divider
