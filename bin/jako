@@ -4,11 +4,13 @@ require 'rubygems'
 require 'bundler/setup'
 require 'commander/import'
 require './lib/helpers/utils'
+require './lib/databases'
 require 'platform-api'
 require 'byebug'
 require 'tty-prompt'
 
 @utils = Utils.instance
+@dbtools = Databases.instance
 
 program :name, 'Jako'
 program :version, '1.0.0'
@@ -62,6 +64,8 @@ command :prompt do |c|
     puts "ID: #{chosen_app["id"]}"
     puts "Database Plan: #{db_plan_name}"
 
+    # system "heroku pg:info --app=#{chosen_app["name"]}"
+
     redis_addon = app_addons.select{|addon| addon["name"].match? /redis/}[0]
     redis_plan_name = redis_addon['plan']['name'].gsub!('heroku-redis:','')
 
@@ -76,6 +80,8 @@ command :prompt do |c|
 
     choose do |menu|
       menu.choice 'Upgrade Database Plan' do
+        @dbtools.upgrade
+
         @utils.divider
         puts " :=== Pick New Plan ===:"
         @utils.divider
